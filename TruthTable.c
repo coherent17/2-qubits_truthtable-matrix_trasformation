@@ -1,9 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int **constructTruthTable();
-void printTruthTable(int **);
-
 int **constructTruthTable(){
     //mallocate the 4*2 matrix to store the output qubits
     int row = 4;
@@ -37,4 +34,12 @@ void printTruthTable(int **TruthTable){
     printf("\t0 1: %d %d\n",TruthTable[1][0],TruthTable[1][1]);
     printf("\t1 0: %d %d\n",TruthTable[2][0],TruthTable[2][1]);
     printf("\t1 1: %d %d\n",TruthTable[3][0],TruthTable[3][1]);
+}
+
+//testing driven code:
+int main(){
+    int **truthTable=NULL;
+    truthTable=constructTruthTable();
+    printTruthTable(truthTable);
+    return 0;
 }
