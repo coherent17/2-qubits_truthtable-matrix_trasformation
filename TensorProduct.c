@@ -35,4 +35,27 @@ int *TensorProduct(int a, int b){
     return result;
 }
 
+void printTensorProductResult(int *result){
+    for(int i=0;i<4;i++){
+        printf("%d ", result[i]);
+    }
+    printf("\n");
+}
 
+//testing driven code:
+int main(){
+    int *result;
+    result=TensorProduct(0,0);
+    printTensorProductResult(result);
+
+    result=TensorProduct(0,1);
+    printTensorProductResult(result);
+
+    result=TensorProduct(1,0);
+    printTensorProductResult(result);
+
+    result=TensorProduct(1,1);
+    printTensorProductResult(result);
+
+    return 0;
+}
