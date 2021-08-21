@@ -1,10 +1,12 @@
-#include "function.h"
 #include <stdio.h>
+#include "function.h"
 
 int main(){
-    int **TruthTable = NULL;
-    TruthTable = constructTruthTable();
+    int **TruthTable=constructTruthTable();
     printTruthTable(TruthTable);
+    int **matrix=constructMatrix();
+    matrix=findMatrix(TruthTable);
+    printMatrix(matrix);
     return 0;
 }
 
