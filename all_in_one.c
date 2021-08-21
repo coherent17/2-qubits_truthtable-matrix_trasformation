@@ -103,19 +103,22 @@ int **constructMatrix(){
     return matrix;
 }
 
-bool checkArray(int *array1, int *array2){
-    bool flag=true;
-    for(int i=0;i<4;i++){
-        if(array1[i]!=array2[i]) return false;
-    }
-    return flag;
-}
-
 void printMatrix(int **matrix){
     printf("\t%d %d %d %d\n", matrix[0][0], matrix[0][1], matrix[0][2], matrix[0][3]);
     printf("\t%d %d %d %d\n", matrix[1][0], matrix[1][1], matrix[1][2], matrix[1][3]);
     printf("\t%d %d %d %d\n", matrix[2][0], matrix[2][1], matrix[2][2], matrix[2][3]);
     printf("\t%d %d %d %d\n\n", matrix[3][0], matrix[3][1], matrix[3][2], matrix[3][3]);
+}
+
+bool checkArray(int *array1, int *array2){
+    bool flag=true;
+    for(int i=0;i<4;i++){
+        if(array1[i]!=array2[i]){
+            flag=false;
+            break;
+        }
+    }
+    return flag;
 }
 
 int **findMatrix(int **TruthTable){
@@ -125,14 +128,31 @@ int **findMatrix(int **TruthTable){
     int *input3=TensorProduct(1,0);
     int *input4=TensorProduct(1,1);
 
+    //check the input tensor product result
+    /*
+    printTensorProductResult(input1);
+    printTensorProductResult(input2);
+    printTensorProductResult(input3);
+    printTensorProductResult(input4);
+    */
+
     //deal with output qubits tensorproduct
     int *output1=TensorProduct(TruthTable[0][0], TruthTable[0][1]);
     int *output2=TensorProduct(TruthTable[1][0], TruthTable[1][1]);
     int *output3=TensorProduct(TruthTable[2][0], TruthTable[2][1]);
     int *output4=TensorProduct(TruthTable[3][0], TruthTable[3][1]);
 
+    //check the output tensor product result
+    /*
+    printTensorProductResult(output1);
+    printTensorProductResult(output2);
+    printTensorProductResult(output3);
+    printTensorProductResult(output4);
+    */
+
     //brute force to generate the wanted matrix
     int **matrix=constructMatrix();
+    int count=0;
     for (int index_1 = 0; index_1 <= 1;index_1++){
         for (int index_2 = 0; index_2 <= 1;index_2++){
             for(int index_3 = 0; index_3 <= 1;index_3++){
@@ -169,14 +189,28 @@ int **findMatrix(int **TruthTable){
                                                                     matrix[3][2] = index_15;
                                                                     matrix[3][3] = index_16;
 
+                                                                    count+=1;
+                                                                    printf("%d\n", count);
+                                                                    //printMatrix(matrix);
+
                                                                     bool check1 = checkArray(matrixMultiply(input1, matrix),output1);
                                                                     bool check2 = checkArray(matrixMultiply(input2, matrix),output2);
                                                                     bool check3 = checkArray(matrixMultiply(input3, matrix),output3);
                                                                     bool check4 = checkArray(matrixMultiply(input4, matrix),output4);
                                                                     
-                                                                    if(check1&check2&check3&check4){
+                                                                    printTensorProductResult(input1);
+                                                                    printMatrix(matrix);
+                                                                    printTensorProductResult(matrixMultiply(input1, matrix));
+                                                                    printTensorProductResult(output1);
+
+                                                                    printf("check1= %d\n", check1);
+
+
+                                                                    
+                                                                    if(check1==1 && check2==1 && check3==1 && check4==1){
+                                                                        printf("hi\n");
                                                                         printMatrix(matrix);
-                                                                        break;
+                                                                        return matrix;
                                                                     }
                                                                 }
                                                             }
@@ -194,15 +228,12 @@ int **findMatrix(int **TruthTable){
             }
         }
     }
-    return matrix;
+    return NULL;
 }
 
 int main(){
-    int **TruthTable=NULL;
-    TruthTable=constructTruthTable();
-    printTruthTable(TruthTable);
-    int **matrix=constructMatrix();
-    matrix=findMatrix(TruthTable);
+    int **TruthTable=constructTruthTable();
+    int **matrix=findMatrix(TruthTable);
     printMatrix(matrix);
     return 0;
 }
