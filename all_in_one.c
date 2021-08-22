@@ -13,7 +13,7 @@ int **constructTruthTable(){
     }
     
     //write the matrix
-    printf("Please enter the corresponding output:\n");
+    printf("Please enter the corresponding output state:\n");
     printf("\t0 0: ");
     scanf("%d %d", &TruthTable[0][0], &TruthTable[0][1]);
 
@@ -80,10 +80,10 @@ void printTensorProductResult(int *result){
 
 int *matrixMultiply(int *array, int **matrix){
     int *result=malloc(sizeof(int)*4);
-    result[0]=array[0]*(matrix[0][0]+matrix[1][0]+matrix[2][0]+matrix[3][0]);
-    result[1]=array[1]*(matrix[0][1]+matrix[1][1]+matrix[2][1]+matrix[3][1]);
-    result[2]=array[2]*(matrix[0][2]+matrix[1][2]+matrix[2][2]+matrix[3][2]);
-    result[3]=array[3]*(matrix[0][3]+matrix[1][3]+matrix[2][3]+matrix[3][3]);
+    result[0]=matrix[0][0]*array[0]+matrix[0][1]*array[1]+matrix[0][2]*array[2]+matrix[0][3]*array[3];
+    result[1]=matrix[1][0]*array[0]+matrix[1][1]*array[1]+matrix[1][2]*array[2]+matrix[1][3]*array[3];
+    result[2]=matrix[2][0]*array[0]+matrix[2][1]*array[1]+matrix[2][2]*array[2]+matrix[2][3]*array[3];
+    result[3]=matrix[3][0]*array[0]+matrix[3][1]*array[1]+matrix[3][2]*array[2]+matrix[3][3]*array[3];
     return result;
 }
 
@@ -152,7 +152,6 @@ int **findMatrix(int **TruthTable){
 
     //brute force to generate the wanted matrix
     int **matrix=constructMatrix();
-    int count=0;
     for (int index_1 = 0; index_1 <= 1;index_1++){
         for (int index_2 = 0; index_2 <= 1;index_2++){
             for(int index_3 = 0; index_3 <= 1;index_3++){
@@ -189,27 +188,13 @@ int **findMatrix(int **TruthTable){
                                                                     matrix[3][2] = index_15;
                                                                     matrix[3][3] = index_16;
 
-                                                                    count+=1;
-                                                                    printf("%d\n", count);
-                                                                    //printMatrix(matrix);
-
                                                                     bool check1 = checkArray(matrixMultiply(input1, matrix),output1);
                                                                     bool check2 = checkArray(matrixMultiply(input2, matrix),output2);
                                                                     bool check3 = checkArray(matrixMultiply(input3, matrix),output3);
                                                                     bool check4 = checkArray(matrixMultiply(input4, matrix),output4);
                                                                     
-                                                                    printTensorProductResult(input1);
-                                                                    printMatrix(matrix);
-                                                                    printTensorProductResult(matrixMultiply(input1, matrix));
-                                                                    printTensorProductResult(output1);
-
-                                                                    printf("check1= %d\n", check1);
-
-
-                                                                    
                                                                     if(check1==1 && check2==1 && check3==1 && check4==1){
-                                                                        printf("hi\n");
-                                                                        printMatrix(matrix);
+                                                                        printf("Find the corresponding matrix successfully!\n");
                                                                         return matrix;
                                                                     }
                                                                 }
