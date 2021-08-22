@@ -1,2 +1,5 @@
-int *TensorProduct(int , int);
-int *matrixMultiply(int *, int **);
+#include <stdlib.h>
+
+int **constructTruthTable();
+int **findMatrix(int **);
+void printMatrix(int **);

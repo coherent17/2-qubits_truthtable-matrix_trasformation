@@ -1,11 +1,9 @@
 #include <stdio.h>
-#include "function.h"
+#include "matrix.h"
 
 int main(){
     int **TruthTable=constructTruthTable();
-    printTruthTable(TruthTable);
-    int **matrix=constructMatrix();
-    matrix=findMatrix(TruthTable);
+    int **matrix=findMatrix(TruthTable);
     printMatrix(matrix);
     return 0;
 }

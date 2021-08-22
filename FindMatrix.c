@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include "matrix.h"
+#include "tensor.h"
 
 int **constructMatrix(){
     int **matrix=NULL;
@@ -90,9 +90,9 @@ int **findMatrix(int **TruthTable){
                                                                     bool check3 = checkArray(matrixMultiply(input3, matrix),output3);
                                                                     bool check4 = checkArray(matrixMultiply(input4, matrix),output4);
                                                                     
-                                                                    if(check1&check2&check3&check4){
-                                                                        printMatrix(matrix);
-                                                                        break;
+                                                                    if(check1==1 && check2==1 && check3==1 && check4==1){
+                                                                        printf("Find the corresponding matrix successfully!\n");
+                                                                        return matrix;
                                                                     }
                                                                 }
                                                             }
@@ -110,12 +110,5 @@ int **findMatrix(int **TruthTable){
             }
         }
     }
-    return matrix;
-}
-
-//testing driven code:
-int main(){
-    int **matrix=constructMatrix();
-    printMatrix(matrix);
-    return 0;
+    return NULL;
 }

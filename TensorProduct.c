@@ -41,21 +41,3 @@ void printTensorProductResult(int *result){
     }
     printf("\n");
 }
-
-//testing driven code:
-int main(){
-    int *result;
-    result=TensorProduct(0,0);
-    printTensorProductResult(result);
-
-    result=TensorProduct(0,1);
-    printTensorProductResult(result);
-
-    result=TensorProduct(1,0);
-    printTensorProductResult(result);
-
-    result=TensorProduct(1,1);
-    printTensorProductResult(result);
-
-    return 0;
-}
