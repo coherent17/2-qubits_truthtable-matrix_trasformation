@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include "tensor.h"
+#include "FindMatrix.h"
+#include "TensorProduct.h"
+#include "MatrixMultiplication.h"
 
 int **constructMatrix(){
     int **matrix=NULL;

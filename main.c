@@ -1,5 +1,6 @@
 #include <stdio.h>
-#include "matrix.h"
+#include "TruthTable.h"
+#include "FindMatrix.h"
 
 int main(){
     int **TruthTable=constructTruthTable();

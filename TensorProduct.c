@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "TensorProduct.h"
 
 int *TensorProduct(int a, int b){
     int *result = NULL;
