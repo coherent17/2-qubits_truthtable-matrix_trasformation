@@ -11,3 +11,31 @@ Tensor product the input qubits and the output qubits, so that we transform the 
 According the input and output array, keep changing the matrix until the matrix satisfied all of the results of the tesor product
 
 ## return the related matrix
+
+
+## How to use?
+### Step 1:
+```bash=
+$ git clone https://github.com/coherent17/2-qubits_truthtable-matrix_trasformation
+```
+
+### Step 2:
+```bash=
+$ cd 2-qubits_truthtable-matrix_trasformation
+```
+
+### Step 3:
+```bash=
+$ make
+```
+
+### Step 4:
+```bash=
+$ ./main
+```
+
+### Step 5:
+enter the corresponding state output of the four input states
+
+### Step 6:
+Get the Result! Finish!!
